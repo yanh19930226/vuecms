@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <!-- 轮播图 -->
-    <mt-swipe :auto="4000">
-      <mt-swipe-item v-for="item in lunbotu" :key="item.url">
-        <img :src="item.src" alt>
+    <mt-swipe :auto="0">
+      <mt-swipe-item v-for="(item,$index) in lunbotu" :key="$index">
+        <img :src="item.image" alt>
       </mt-swipe-item>
     </mt-swipe>
     <!-- 九宫格 -->
@@ -60,14 +60,16 @@ export default {
   },
   methods: {
     getSwipe() {
-      this.$http.jsonp("https://api.douban.com/v2/movie/subject/26825664/photos?count=100&apikey=0df993c66c0c636e29ecbb5344252a4a").then(
+      this.$http.jsonp("https://api.douban.com/v2/movie/subject/26004132/photos?count=100&apikey=0df993c66c0c636e29ecbb5344252a4a").then(
         result => {
             console.log(result);
-        //   if ((result.body.status = 0)) {
-        //     Toast("获取数据成功");
-        //   } else {
-        //     Toast("获取数据失败");
-        //   }
+          if ((result.status ===200)) {
+             this.lunbotu.push(result.body.photos[1]);
+             this.lunbotu.push(result.body.photos[2]);
+             this.lunbotu.push(result.body.photos[3]);
+          } else {
+            Toast("获取数据失败");
+          }
         },
         result => {
           Toast("网络错误");
@@ -83,7 +85,10 @@ export default {
   height: 200px;
 }
 .mint-swipe-item {
-  background-color: red;
+  /* background-color: red; */
+}
+img{
+    width: 100%;
 }
 /* 九宫格样式 */
 .mui-grid-9{
