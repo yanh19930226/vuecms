@@ -1,6 +1,6 @@
 <template>
     <div class="search">
-
+收缩
     </div>
 </template>
 <script>

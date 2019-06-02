@@ -9,42 +9,40 @@
     <!-- 九宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <span class="mui-icon mui-icon-home"></span>
+        <router-link to="/home/newslist">
+          <img src="../assets/menu1.png" alt="">
           <div class="mui-media-body">新闻资讯</div>
-        </a>
+        </router-link >
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <span class="mui-icon mui-icon-email">
-            <span class="mui-badge">5</span>
-          </span>
+        <router-link  to="/newslst">
+          <img src="../assets/menu2.png" alt="">
           <div class="mui-media-body">图片分享</div>
-        </a>
+        </router-link >
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <span class="mui-icon mui-icon-chatbubble"></span>
+        <router-link  to="/newslst">
+          <img src="../assets/menu3.png" alt="">
           <div class="mui-media-body">商品购买</div>
-        </a>
+        </router-link >
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <span class="mui-icon mui-icon-location"></span>
+        <router-link to="/newslst">
+          <img src="../assets/menu4.png" alt="">
           <div class="mui-media-body">留言反馈</div>
-        </a>
+        </router-link >
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <span class="mui-icon mui-icon-search"></span>
+        <router-link to="/newslst">
+          <img src="../assets/menu5.png" alt="">
           <div class="mui-media-body">视频专区</div>
-        </a>
+        </router-link >
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <span class="mui-icon mui-icon-phone"></span>
+        <router-link  to="/newslst">
+          <img src="../assets/menu6.png" alt="">
           <div class="mui-media-body">联系我们</div>
-        </a>
+        </router-link >
       </li>
     </ul>
   </div>
@@ -62,13 +60,14 @@ export default {
   },
   methods: {
     getSwipe() {
-      this.$http.get("/someUrl").then(
+      this.$http.jsonp("https://api.douban.com/v2/movie/subject/26825664/photos?count=100&apikey=0df993c66c0c636e29ecbb5344252a4a").then(
         result => {
-          if ((result.body.status = 0)) {
-            Toast("获取数据成功");
-          } else {
-            Toast("获取数据失败");
-          }
+            console.log(result);
+        //   if ((result.body.status = 0)) {
+        //     Toast("获取数据成功");
+        //   } else {
+        //     Toast("获取数据失败");
+        //   }
         },
         result => {
           Toast("网络错误");
@@ -92,5 +91,9 @@ export default {
 }
 .mui-grid-view.mui-grid-9 .mui-table-view-cell{
     border: none;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell img{
+    width: 60px;
+    height: 60px;
 }
 </style>

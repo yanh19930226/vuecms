@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import routerConfig from './routerconfig'
 // import axios from 'axios'
 import VueResource from 'vue-resource'
+import filters from './filters'
 
 import './mint-ui.js'
 import "../src/lib/mui/dist/css/mui.min.css"
@@ -12,8 +13,12 @@ import animated from 'animate.css'
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
-Vue.use(animated)
+Vue.use(animated);
 
+//设置api的根目录，本项目不使用
+// Vue.http.options.root = '/root';
+//注册全局过滤器
+Object.keys(filters).forEach(key => Vue.filter(key, filters[key]))
 
 
 const router = new VueRouter({
