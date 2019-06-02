@@ -2,40 +2,29 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import routerConfig from './routerconfig'
-import axios from 'axios'
+// import axios from 'axios'
+import VueResource from 'vue-resource'
+
 import './mint-ui.js'
-// require("../src/lib/mui/dist/css/mui.min.css")
+import "../src/lib/mui/dist/css/mui.min.css"
+import "../src/lib/mui/dist/css/icons-extra.css"
+import animated from 'animate.css'
 
-// Vue.use(VueRouter);
-
-// filter模块文件夹的入口文件中调用Vue的Vue.filter方法注册全局
-// Object.keys(filters).forEach(key => Vue.filter(key, filters[key]))
-//配置发送请求的信息，发送请求显示loading
-// axios.interceptors.request.use(function(config) {
-//     // stores.dispatch('showLoading')
-//     return config;
-// }, function(error) {
-//     return Promise.reject(error);
-// });
-//配置请求回来的信息,请求回来loading消失
-// axios.interceptors.response.use(function(response) {
-//     // stores.dispatch('hideLoading')
-//     return response;
-// }, function(error) {
-
-//     return Promise.reject(error);
-// });
-
-// Vue.prototype.$http = axios //其他页面在使用axios的时候直接  this.$http就可以了
+Vue.use(VueRouter);
+Vue.use(VueResource);
+Vue.use(animated)
 
 
-// const router = new VueRouter({
-//     mode: 'history',
-//     scrollBehavior: () => ({ y: 0 }),
-//     routes: routerConfig
-// });
+
+const router = new VueRouter({
+    mode: 'history',
+    scrollBehavior: () => ({ y: 0 }),
+    routes: routerConfig,
+    linkActiveClass: "mui-active" //覆盖默认的路由active样式使用mui的active样式
+});
 
 new Vue({
     el: '#app',
+    router,
     render: h => h(App)
 })

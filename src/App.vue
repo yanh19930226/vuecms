@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Header></Header>
-    <!-- <router-view></router-view> -->
+    <transition enter-active-class="zoomInLeft">
+    <keep-alive>
+    <router-view></router-view>
+    </keep-alive>
+    </transition>
     <Footer></Footer>
   </div>
 </template>
@@ -21,4 +25,7 @@ export default {
 </script>
 
 <style>
+#app{
+  padding-top: 40px;
+}
 </style>
