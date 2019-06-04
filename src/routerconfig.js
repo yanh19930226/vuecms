@@ -4,6 +4,8 @@ import Member from '../src/components/member.vue'
 import Cart from '../src/components/cart.vue'
 import NewsList from '../src/components/newslist.vue'
 import NewsDetail from '../src/components/newsdetail.vue'
+import PhotoList from '../src/components/photolist.vue'
+
 
 
 export default [{
@@ -17,6 +19,10 @@ export default [{
     {
         path: '/home/newsdetail/:id',
         component: NewsDetail
+    },
+    {
+        path: '/home/photolist',
+        component: PhotoList
     },
     {
         path: '/search',

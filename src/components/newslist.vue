@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     getNewsList() {
-      this.$http.jsonp("https://api.douban.com/v2/movie/celebrity/1044707/works?apikey=0b2bdeda43b5688921839c8ecb20399b").then(
+      this.$http.jsonp("https://api.jisuapi.com/news/get?channel=头条&start=0&num=10&appkey=73065569db3dfcef").then(
         result => {
             console.log(result);
           if ((result.body.status === 0)) {

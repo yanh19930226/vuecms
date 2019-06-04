@@ -5,6 +5,12 @@
 2.制作底部购物车的时候需要另外的mui的扩展图标和样式
 3.linkActiveClass: "mui-active" //覆盖默认的路由active样式使用mui的active样式
 4.使用Animate动画 右侧进入左侧消失，修改消失的position为absolute
+5.顶部的滑动条的使用mui的tap-top-webview组件,删除mui-fullscreen的样式去除占满全屏的问题
+6.mui的滑动条需要导入mui的js
+7.关闭webpack中的严格模式
+8.关于引入局部滚动条后底部tab不能使用的问题
+
+
 
 ## Build Setup
 
