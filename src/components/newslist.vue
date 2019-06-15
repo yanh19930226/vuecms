@@ -1,13 +1,13 @@
 <template>
   <div class="newslist">
     <ul class="mui-table-view">
-      <router-link tag="li" class="mui-table-view-cell mui-media" to="/home/newsdetail/2" v-for="(item,$index) in newslist" :key="$index">
+      <router-link tag="li" class="mui-table-view-cell mui-media" :to="'/home/newsdetail/'+item.id" v-for="item in newslist" :key="item.id">
         <a href="javascript:;">
-          <img class="mui-media-object mui-pull-left" :src="item.pic">
+          <img class="mui-media-object mui-pull-left" :src="item.images.large">
           <div class="mui-media-body">
             <h4 v-text="item.title"></h4>
             <p class="mui-ellipsis">
-              <span>发表时间:{{item.time}}</span>
+              <span>发表时间:{{item.year}}</span>
               <span>点击次数:1次</span>
             </p>
           </div>
@@ -29,11 +29,11 @@ export default {
   },
   methods: {
     getNewsList() {
-      this.$http.jsonp("https://api.jisuapi.com/news/get?channel=头条&start=0&num=10&appkey=73065569db3dfcef").then(
+      this.$http.jsonp("https://api.douban.com/v2/movie/new_movies?apikey=0b2bdeda43b5688921839c8ecb20399b").then(
         result => {
             console.log(result);
-          if ((result.body.status === 0)) {
-              this.newslist=result.body.result.list;
+          if ((result.ok === true)) {
+              this.newslist=result.body.subjects;
           } else {
             Toast("获取数据失败");
           }

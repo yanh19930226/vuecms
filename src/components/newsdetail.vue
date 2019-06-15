@@ -1,37 +1,52 @@
 <template>
   <div class="newsdetail">
-    <h4>新闻标体</h4>
+    <h4>{{news.title}}</h4>
     <p>
-      <span>发表时间:2019-06-31</span>
+      <span>发表时间:{{news.year}}</span>
       <span>点击次数</span>
     </p>
     <hr>
-    <div class="newsdetail-content"></div>
+    <div class="newsdetail-content" v-html="news.summary"></div>
   </div>
 </template>
 <script>
+import { Toast } from "mint-ui";
+import comments from "./comment.vue"
 export default {
   data() {
     return {
-        id:ths.$route.params.id,
+      id: this.$route.params.id,
+      news: {}
     };
+  },
+  created() {
+    this.getNewsDetail();
   },
   methods: {
     getNewsDetail() {
-      this.$http.jsonp("https://api.jisuapi.com/news/get"+ths.id).then(
-        result => {
-          console.log(result);
-          //   if ((result.body.status = 0)) {
-          //     Toast("获取数据成功");
-          //   } else {
-          //     Toast("获取数据失败");
-          //   }
-        },
-        result => {
-          Toast("网络错误");
-        }
-      );
+      this.$http
+        .jsonp(
+          "https://api.douban.com/v2/movie/subject/" +
+            this.$route.params.id +
+            "?apikey=0b2bdeda43b5688921839c8ecb20399b"
+        )
+        .then(
+          result => {
+            console.log(result);
+            if (result.ok === true) {
+              this.news = result.body;
+            } else {
+              Toast("获取数据失败");
+            }
+          },
+          result => {
+            Toast("网络错误");
+          }
+        );
     }
+  },
+  components: {
+
   }
 };
 </script>

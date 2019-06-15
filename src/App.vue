@@ -33,7 +33,9 @@ export default {
   position: absolute;
 }
 
-
+.mint-header.is-fixed{
+  z-index:99;
+}
 .mui-bar-tab .mui-tab-item-yh.mui-active {
     color: #007aff;
 }
